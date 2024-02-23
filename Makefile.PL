@@ -23,6 +23,7 @@ requires 'Business::ISBN' => 0;
 requires 'Class::Utils' => 0;
 requires 'Error::Pure' => 0;
 requires 'Getopt::Std' => 0;
+requires 'Perl6::Slurp' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/App-ISBN-Check/issues',
 resources 'homepage' => 'https://github.com/michal-josef-spacek/App-ISBN-Check';
 resources 'repository' => 'git://github.com/michal-josef-spacek/App-ISBN-Check';
