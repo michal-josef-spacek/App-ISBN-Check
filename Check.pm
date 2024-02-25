@@ -39,7 +39,7 @@ sub run {
 		print STDERR "Usage: $0 [-h] [--version] file_with_isbns\n";
 		print STDERR "\t-h\t\tPrint help.\n";
 		print STDERR "\t--version\tPrint version.\n";
-		print STDERR "\tisbn_string\tISBN string.\n";
+		print STDERR "\tfile_with_isbns\tFile with ISBN strings, one per line.\n";
 		return 1;
 	}
 	$self->{'_file'} = shift @ARGV;
