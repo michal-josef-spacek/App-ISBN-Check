@@ -60,11 +60,6 @@ sub run {
 			next;
 		}
 
-		if ($isbn !~ m/^[\d\-xX]+$/ms) {
-			print $isbn.": Some typo.\n";
-			next;
-		}
-
 		my $isbn_concrete;
 		my $isbn_without_dash = $isbn;
 		$isbn_without_dash =~ s/-//msg;
