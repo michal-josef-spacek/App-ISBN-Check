@@ -24,7 +24,7 @@ __END__
 
 =head1 NAME
 
-isbn-check - Script to check ISBN numbers.
+isbn-check - Tool for ISBN checking.
 
 =head1 SYNOPSIS
 
@@ -32,11 +32,7 @@ isbn-check - Script to check ISBN numbers.
 
 =head1 DESCRIPTION
 
-Vision of this module is:
-
- * Support ISBN 13 and ISBN 10 formats.
- * Detect if ISBN is valid.
- * Convert ISBN to pretty print value.
+The tool checks the ISBN written in the file.
 
 =head1 ARGUMENTS
 
@@ -50,32 +46,26 @@ Print help.
 
 Print version of script.
 
-=item * C<isbn_string>
+=item * C<file_with_isbns>
 
-ISBN number string.
+File with ISBN strings, one per line.
 
 =back
 
-=head1 EXAMPLE1
+=head1 EXAMPLE
 
- isbn-format 9788025343364
+ cat /tmp/foo
+ 978-80-253-4336-4
+ 9788025343363
+ 9788025343364
+ 978802534336
 
- # Output:
- # 9788025343364 -> 978-80-253-4336-4
-
-=head1 EXAMPLE2
-
- isbn-format 9788025343363
-
- # Output:
- # 9788025343364 -> 978-80-253-4336-4
-
-=head1 EXAMPLE3
-
- isbn-format 978802534336
+ isbn-chec /tmp/foo
 
  # Output:
- # ISBN '978802534336' is bad.
+ # 9788025343363: Different after format (978-80-253-4336-4).
+ # 9788025343364: Different after format (978-80-253-4336-4).
+ # 978802534336: Cannot parse.
 
 =head1 REPOSITORY
 

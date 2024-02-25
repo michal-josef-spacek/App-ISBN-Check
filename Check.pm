@@ -122,34 +122,76 @@ Returns 1 for error, 0 for success.
          From Class::Utils::set_params():
                  Unknown parameter '%s'.
 
- run():
-         ISBN '%s' is bad.
-         ISBN '%s' is not valid.
+=head1 EXAMPLE1
 
-=head1 EXAMPLE
+=for comment filename=check_example_isbns.pl
 
  use strict;
  use warnings;
 
- use App::ISBN::Format;
+ use App::ISBN::Check;
+ use File::Temp;
+ use IO::Barf qw(barf);
+
+ # ISBNs for test.
+ my $isbns = <<'END';
+ 978-80-253-4336-4
+ 9788025343363
+ 9788025343364
+ 978802534336
+ 9656123456
+ END
+
+ # Temporary file.
+ my $temp_file = File::Temp->new->filename;
+
+ # Barf out.
+ barf($temp_file, $isbns);
 
  # Arguments.
  @ARGV = (
-         '9788025343364',
+         $temp_file,
  );
 
  # Run.
- exit App::ISBN::Format->new->run;
+ exit App::ISBN::Check->new->run;
 
  # Output:
- # 9788025343364 -> 978-80-253-4336-4
+ # 9788025343363: Different after format (978-80-253-4336-4).
+ # 9788025343364: Different after format (978-80-253-4336-4).
+ # 978802534336: Cannot parse.
+ # 9656123456: Not valid.
+
+=head1 EXAMPLE2
+
+=for comment filename=print_help.pl
+
+ use strict;
+ use warnings;
+
+ use App::ISBN::Check;
+
+ # Arguments.
+ @ARGV = (
+         -h,
+ );
+
+ # Run.
+ exit App::ISBN::Check->new->run;
+
+ # Output:
+ # Usage: ./print_help.pl [-h] [--version] file_with_isbns
+ #         -h              Print help.
+ #         --version       Print version.
+ #         file_with_isbns File with ISBN strings, one per line.
 
 =head1 DEPENDENCIES
 
 L<Business::ISBN>,
 L<Class::Utils>,
 L<Error::Pure>,
-L<Getopt::Std>.
+L<Getopt::Std>,
+L<Perl6::Slurp>.
 
 =head1 REPOSITORY
 

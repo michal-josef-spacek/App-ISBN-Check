@@ -1,15 +1,11 @@
 NAME
-    isbn-check - Script to check ISBN numbers.
+    isbn-check - Tool for ISBN checking.
 
 SYNOPSIS
      isbn-check [-h] [--version] file_with_isbns
 
 DESCRIPTION
-    Vision of this module is:
-
-     * Support ISBN 13 and ISBN 10 formats.
-     * Detect if ISBN is valid.
-     * Convert ISBN to pretty print value.
+    The tool checks the ISBN written in the file.
 
 ARGUMENTS
     *       "-h"
@@ -20,27 +16,23 @@ ARGUMENTS
 
             Print version of script.
 
-    *       "isbn_string"
+    *       "file_with_isbns"
 
-            ISBN number string.
+            File with ISBN strings, one per line.
 
-EXAMPLE1
-     isbn-format 9788025343364
+EXAMPLE
+     cat /tmp/foo
+     978-80-253-4336-4
+     9788025343363
+     9788025343364
+     978802534336
 
-     # Output:
-     # 9788025343364 -> 978-80-253-4336-4
-
-EXAMPLE2
-     isbn-format 9788025343363
-
-     # Output:
-     # 9788025343364 -> 978-80-253-4336-4
-
-EXAMPLE3
-     isbn-format 978802534336
+     isbn-chec /tmp/foo
 
      # Output:
-     # ISBN '978802534336' is bad.
+     # 9788025343363: Different after format (978-80-253-4336-4).
+     # 9788025343364: Different after format (978-80-253-4336-4).
+     # 978802534336: Cannot parse.
 
 REPOSITORY
     <https://github.com/michal-josef-spacek/App-ISBN-Check>
