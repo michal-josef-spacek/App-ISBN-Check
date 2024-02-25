@@ -60,7 +60,7 @@ sub run {
 			next;
 		}
 
-		if ($isbn !~ m/^[\d\-X]+$/ms) {
+		if ($isbn !~ m/^[\d\-xX]+$/ms) {
 			print $isbn.": Some typo.\n";
 			next;
 		}
