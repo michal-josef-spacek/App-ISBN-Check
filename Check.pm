@@ -49,14 +49,14 @@ sub run {
 	foreach my $isbn (@isbns) {
 		my $isbn_obj = Business::ISBN->new($isbn);
 		if (! $isbn_obj) {
-			print $isbn.": Cannot parse.\n";
+			print STDERR $isbn.": Cannot parse.\n";
 			next;
 		}
 		if (! $isbn_obj->is_valid) {
 			$isbn_obj->fix_checksum;
 		}
 		if (! $isbn_obj->is_valid) {
-			print $isbn.": Not valid.\n";
+			print STDERR $isbn.": Not valid.\n";
 			next;
 		}
 
@@ -69,7 +69,7 @@ sub run {
 			$isbn_concrete = $isbn_obj->as_isbn10;
 		}
 		if ($isbn ne $isbn_concrete->as_string) {
-			print $isbn.": Different after format (".$isbn_concrete->as_string.").\n";
+			print STDERR $isbn.": Different after format (".$isbn_concrete->as_string.").\n";
 		}
 	}
 
